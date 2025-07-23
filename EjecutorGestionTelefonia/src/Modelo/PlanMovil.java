@@ -1,6 +1,6 @@
 package Modelo;
 
-public class PlanMovil {
+public abstract class PlanMovil {
     
     protected int idPlan;
     protected String nombre;
