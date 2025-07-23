@@ -11,6 +11,8 @@ public class PlanMovil {
         this.nombre = nombre;
         this.tipoPlan = tipoPlan;
     }
+    
+    public abstract double calcularPagoMensual();
 
     public int getIdPlan() {
         return idPlan;
@@ -36,5 +38,7 @@ public class PlanMovil {
         this.tipoPlan = tipoPlan;
     }
     
-    
+
+ 
 }
+
