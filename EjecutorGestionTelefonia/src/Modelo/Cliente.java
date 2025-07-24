@@ -1,39 +1,27 @@
 package Modelo;
 
 public class Cliente {
-    
-    private int idCliente;
     private String nombres;
     private String cedulaPasaporte;
     private String ciudad;
-    private String marcaCelular;
-    private String modeloCelular;
-    private String numeroCelular;
-    private double pagoMensual;
     private String email;
-    private int edad;
+    private String direccion;
+    private Dispositivo dispositivo;
 
-    public Cliente(int idCliente, String nombres, String cedulaPasaporte, String ciudad, String marcaCelular, String modeloCelular, String numeroCelular, double pagoMensual, String email, int edad) {
-        this.idCliente = idCliente;
+    public Cliente(String nombres, String cedulaPasaporte, String ciudad, String email, String direccion, Dispositivo dispositivo) {
         this.nombres = nombres;
         this.cedulaPasaporte = cedulaPasaporte;
         this.ciudad = ciudad;
-        this.marcaCelular = marcaCelular;
-        this.modeloCelular = modeloCelular;
-        this.numeroCelular = numeroCelular;
-        this.pagoMensual = pagoMensual;
         this.email = email;
-        this.edad = edad;
+        this.direccion = direccion;
+        this.dispositivo = dispositivo;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Cliente() {
+        
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
+    // Getters y setters
     public String getNombres() {
         return nombres;
     }
@@ -58,38 +46,6 @@ public class Cliente {
         this.ciudad = ciudad;
     }
 
-    public String getMarcaCelular() {
-        return marcaCelular;
-    }
-
-    public void setMarcaCelular(String marcaCelular) {
-        this.marcaCelular = marcaCelular;
-    }
-
-    public String getModeloCelular() {
-        return modeloCelular;
-    }
-
-    public void setModeloCelular(String modeloCelular) {
-        this.modeloCelular = modeloCelular;
-    }
-
-    public String getNumeroCelular() {
-        return numeroCelular;
-    }
-
-    public void setNumeroCelular(String numeroCelular) {
-        this.numeroCelular = numeroCelular;
-    }
-
-    public double getPagoMensual() {
-        return pagoMensual;
-    }
-
-    public void setPagoMensual(double pagoMensual) {
-        this.pagoMensual = pagoMensual;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -98,13 +54,19 @@ public class Cliente {
         this.email = email;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
-    
-    
+
+    public Dispositivo getDispositivo() {
+        return dispositivo;
+    }
+
+    public void setDispositivo(Dispositivo dispositivo) {
+        this.dispositivo = dispositivo;
+    }
 }
