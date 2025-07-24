@@ -19,13 +19,13 @@ public class VistaCliente {
     public void mostrarMenu() {
         int opcion;
         do {
-            System.out.println("\n--- Gestión de Clientes ---");
+            System.out.println("\n--- Gestion de Clientes ---");
             System.out.println("1. Crear cliente");
             System.out.println("2. Listar clientes");
             System.out.println("3. Actualizar cliente");
             System.out.println("4. Eliminar cliente");
             System.out.println("5. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.print("Seleccione una opcion: ");
             opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion) {
@@ -34,7 +34,7 @@ public class VistaCliente {
                 case 3 -> actualizarCliente();
                 case 4 -> eliminarCliente();
                 case 5 -> System.out.println("Saliendo del módulo de clientes...");
-                default -> System.out.println("Opción inválida.");
+                default -> System.out.println("Opcion invalida.");
             }
         } while (opcion != 5);
     }
@@ -42,7 +42,7 @@ public class VistaCliente {
     private void crearCliente() {
         Cliente c = ingresarDatosCliente();
         controlador.crear(c);
-        System.out.println("✅ Cliente creado correctamente.");
+        System.out.println("Cliente creado correctamente.");
     }
 
     private void listarClientes() {
@@ -54,20 +54,20 @@ public class VistaCliente {
     }
 
     private void actualizarCliente() {
-        System.out.print("Ingrese la cédula/pasaporte del cliente a actualizar: ");
+        System.out.print("Ingrese la cedula/pasaporte del cliente a actualizar: ");
         String cedula = scanner.nextLine();
 
         Cliente c = ingresarDatosCliente();
         c.setCedulaPasaporte(cedula);
         controlador.actualizar(c);
-        System.out.println("✅ Cliente actualizado correctamente.");
+        System.out.println("Cliente actualizado correctamente.");
     }
 
     private void eliminarCliente() {
-        System.out.print("Ingrese la cédula/pasaporte del cliente a eliminar: ");
+        System.out.print("Ingrese la cedula/pasaporte del cliente a eliminar: ");
         String cedula = scanner.nextLine();
         controlador.eliminar(cedula);
-        System.out.println("✅ Cliente eliminado correctamente.");
+        System.out.println("Cliente eliminado correctamente.");
     }
 
     private Cliente ingresarDatosCliente() {
@@ -77,7 +77,7 @@ public class VistaCliente {
         System.out.print("Nombres: ");
         c.setNombres(scanner.nextLine());
 
-        System.out.print("Cédula/Pasaporte: ");
+        System.out.print("Cedula/Pasaporte: ");
         c.setCedulaPasaporte(scanner.nextLine());
 
         System.out.print("Ciudad: ");
@@ -86,7 +86,7 @@ public class VistaCliente {
         System.out.print("Email: ");
         c.setEmail(scanner.nextLine());
 
-        System.out.print("Dirección: ");
+        System.out.print("Direccion: ");
         c.setDireccion(scanner.nextLine());
 
         System.out.print("Marca del celular: ");
@@ -95,7 +95,7 @@ public class VistaCliente {
         System.out.print("Modelo del celular: ");
         d.setModelo(scanner.nextLine());
 
-        System.out.print("Número de celular: ");
+        System.out.print("Numero de celular: ");
         d.setNumero(scanner.nextLine());
 
         System.out.print("Pago mensual: ");
@@ -108,10 +108,10 @@ public class VistaCliente {
 
     private void mostrarCliente(Cliente c) {
         System.out.println("\nNombre: " + c.getNombres());
-        System.out.println("Cédula/Pasaporte: " + c.getCedulaPasaporte());
+        System.out.println("Cedula/Pasaporte: " + c.getCedulaPasaporte());
         System.out.println("Ciudad: " + c.getCiudad());
         System.out.println("Email: " + c.getEmail());
-        System.out.println("Dirección: " + c.getDireccion());
+        System.out.println("Direccion: " + c.getDireccion());
         System.out.println("Marca Celular: " + c.getDispositivo().getMarca());
         System.out.println("Modelo Celular: " + c.getDispositivo().getModelo());
         System.out.println("Número Celular: " + c.getDispositivo().getNumero());
