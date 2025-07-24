@@ -24,35 +24,38 @@ public class ClienteControlador {
             ps.setString(5, d.getModelo());
             ps.setString(6, d.getNumero());
             ps.setDouble(7, d.getPago());
+
             ps.setString(8, c.getEmail());
+            ps.setString(9, c.getDireccion());
+
             ps.executeUpdate();
-            
-        }  catch (SQLException ex) {
+
+        } catch (SQLException ex) {
             System.err.println("Error al crear cliente: " + ex.getMessage());
         }
     }
-   
+
     public List<Cliente> listar() {
-        
         List<Cliente> lista = new ArrayList<>();
         String sql = "SELECT * FROM clientes";
 
-       try (Connection conn = ConexionSQLite.conectar(); Statement st = conn.createStatement();ResultSet rs = st.executeQuery(sql)) {
+        try (Connection conn = ConexionSQLite.conectar(); 
+             Statement st = conn.createStatement(); 
+             ResultSet rs = st.executeQuery(sql)) {
 
             while (rs.next()) {
                 Cliente c = new Cliente();
-                c.setNombres(rs.getString("Nombres"));
-                c.setCedulaPasaporte(rs.getString("Cedula/pasaporte"));
-                c.setCiudad(rs.getString("Ciudad"));
-                c.setEmail(rs.getString("Email"));
-                c.setDireccion(rs.getString("Direccion"));
+                c.setNombres(rs.getString("nombres"));
+                c.setCedulaPasaporte(rs.getString("cedula_pasaporte"));
+                c.setCiudad(rs.getString("ciudad"));
+                c.setEmail(rs.getString("email"));
+                c.setDireccion(rs.getString("direccion"));
 
                 Dispositivo d = new Dispositivo();
-                d.setMarca(rs.getString("Marca del celular"));
-                d.setModelo(rs.getString("Modelo del celular"));
-                d.setNumero(rs.getString("Numero de celular"));
-                d.setPago(rs.getDouble("Pago mensual"));
-                
+                d.setMarca(rs.getString("marca_celular"));
+                d.setModelo(rs.getString("modelo_celular"));
+                d.setNumero(rs.getString("numero_celular"));
+                d.setPago(rs.getDouble("pago_mensual"));
 
                 c.setDispositivo(d);
 
@@ -65,49 +68,43 @@ public class ClienteControlador {
 
         return lista;
     }
-    
+
     public void actualizar(Cliente c) {
-    String sql = "UPDATE clientes SET nombres=?, ciudad=?, marca_celular=?, modelo_celular=?, numero_celular=?, pago_mensual=?, email=?, direccion=? " +
-                 "WHERE cedula_pasaporte=?";
+        String sql = "UPDATE clientes SET nombres=?, ciudad=?, marca_celular=?, modelo_celular=?, numero_celular=?, pago_mensual=?, email=?, direccion=? "
+                + "WHERE cedula_pasaporte=?";
 
-    try (Connection conn = ConexionSQLite.conectar();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSQLite.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setString(1, c.getNombres());
-        ps.setString(2, c.getCiudad());
+            ps.setString(1, c.getNombres());
+            ps.setString(2, c.getCiudad());
 
-        Dispositivo disp = c.getDispositivo();
-        ps.setString(3, disp.getMarca());
-        ps.setString(4, disp.getModelo());
-        ps.setString(5, disp.getNumero());
-        ps.setDouble(6, disp.getPago());
+            Dispositivo d = c.getDispositivo();
+            ps.setString(3, d.getMarca());
+            ps.setString(4, d.getModelo());
+            ps.setString(5, d.getNumero());
+            ps.setDouble(6, d.getPago());
 
-        ps.setString(7, c.getEmail());
-        ps.setString(8, c.getDireccion());
-        ps.setString(9, c.getCedulaPasaporte());
-        ps.executeUpdate();
+            ps.setString(7, c.getEmail());
+            ps.setString(8, c.getDireccion());
+            ps.setString(9, c.getCedulaPasaporte());
 
+            ps.executeUpdate();
 
-    } catch (SQLException ex) {
-        System.err.println("Error al actualizar: " + ex.getMessage());
+        } catch (SQLException ex) {
+            System.err.println("Error al actualizar: " + ex.getMessage());
+        }
     }
-}
-    
+
     public void eliminar(String cedulaPasaporte) {
-    String sql = "DELETE FROM clientes WHERE cedula_pasaporte = ?";
+        String sql = "DELETE FROM clientes WHERE cedula_pasaporte = ?";
 
-    try (Connection conn = ConexionSQLite.conectar();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSQLite.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setString(1, cedulaPasaporte);
-        ps.executeUpdate();
+            ps.setString(1, cedulaPasaporte);
+            ps.executeUpdate();
 
-    } catch (SQLException ex) {
-        
-        System.err.println("Error al eliminar cliente: " + ex.getMessage());
-
+        } catch (SQLException ex) {
+            System.err.println("Error al eliminar cliente: " + ex.getMessage());
+        }
     }
-}
-
-
 }
