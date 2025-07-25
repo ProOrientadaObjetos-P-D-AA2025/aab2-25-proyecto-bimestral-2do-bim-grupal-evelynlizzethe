@@ -1,12 +1,12 @@
 package ejecutorgestiontelefonia;
 
-import Vista.VistaCliente;
+import Vista.Ejecutor;
 
 public class EjecutorGestionTelefonia {
 
     public static void main(String[] args) {
        
-        VistaCliente vista = new VistaCliente();
+        Ejecutor vista = new Ejecutor();
         vista.mostrarMenu();
     }
 }

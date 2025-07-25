@@ -1,55 +1,47 @@
 package Modelo;
-   
-import java.time.LocalDate;
 
 public class Factura {
-    private int idFactura;
-    private Cliente cliente;
-    private PlanMovil plan;
-    private LocalDate fechaEmision;
+    private static int contador = 1; // Contador para asignar IDs únicos
 
-    public Factura(int idFactura, Cliente cliente, PlanMovil plan, LocalDate fechaEmision) {
-        this.idFactura = idFactura;
-        this.cliente = cliente;
-        this.plan = plan;
+    private int idFactura;
+    private int idCliente;
+    private int idPlan;
+    private double totalPagar;
+    private String fechaEmision;
+
+    public Factura(int idCliente, int idPlan, double totalPagar, String fechaEmision) {
+        this.idFactura = contador++;
+        this.idCliente = idCliente;
+        this.idPlan = idPlan;
+        this.totalPagar = totalPagar;
         this.fechaEmision = fechaEmision;
     }
 
-    public double calcularValorTotal() {
-        return plan.calcularPagoMensual();
+    public Factura(Cliente cliente, PlanMovil plan) {
+        this.idFactura = contador++;
+        this.idCliente = cliente.getIdCliente();
+        this.idPlan = plan.getIdPlan();
+        this.totalPagar = plan.calcularPagoMensual();
+        this.fechaEmision = java.time.LocalDate.now().toString();
     }
 
     public int getIdFactura() {
         return idFactura;
     }
 
-    public void setIdFactura(int idFactura) {
-        this.idFactura = idFactura;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getIdPlan() {
+        return idPlan;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public double getTotalPagar() {
+        return totalPagar;
     }
 
-    public PlanMovil getPlan() {
-        return plan;
-    }
-
-    public void setPlan(PlanMovil plan) {
-        this.plan = plan;
-    }
-
-    public LocalDate getFechaEmision() {
+    public String getFechaEmision() {
         return fechaEmision;
     }
-
-    public void setFechaEmision(LocalDate fechaEmision) {
-        this.fechaEmision = fechaEmision;
-    }
-    
 }
-

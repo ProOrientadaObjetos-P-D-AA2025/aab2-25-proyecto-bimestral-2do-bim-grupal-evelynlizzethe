@@ -1,21 +1,18 @@
 package Modelo;
 
 public class Dispositivo {
-    
     private String marca;
     private String modelo;
     private String numero;
-    private double pago;
 
-    public Dispositivo(String marca, String modelo, String numero, double pago) {
+    public Dispositivo(String marca, String modelo, String numero) {
         this.marca = marca;
         this.modelo = modelo;
         this.numero = numero;
-        this.pago = pago;
     }
 
     public Dispositivo() {
-        
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public String getMarca() {
@@ -41,14 +38,5 @@ public class Dispositivo {
     public void setNumero(String numero) {
         this.numero = numero;
     }
-
-    public double getPago() {
-        return pago;
-    }
-
-    public void setPago(double pago) {
-        this.pago = pago;
-    }
-    
     
 }

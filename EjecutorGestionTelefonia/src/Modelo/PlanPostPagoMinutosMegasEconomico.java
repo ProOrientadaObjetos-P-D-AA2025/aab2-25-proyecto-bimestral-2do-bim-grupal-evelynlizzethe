@@ -3,23 +3,51 @@ package Modelo;
 public class PlanPostPagoMinutosMegasEconomico extends PlanMovil {
     private int minutos;
     private double costoMinuto;
-    private double megasGigas;
+    private double gigas;
     private double costoGiga;
-    private double porcentajeDescuento; // Ej: 0.1 para 10%
+    private double porcentajeDescuento;
 
-    public PlanPostPagoMinutosMegasEconomico(int idPlan, String nombre, int minutos, double costoMinuto,
-                                             double megas, double costoGiga, double porcentajeDescuento) {
-        super(idPlan, nombre, "MinutosMegasEco");
+    public PlanPostPagoMinutosMegasEconomico(int idCliente, int minutos, double costoMinuto,
+                                             double gigas, double costoGiga, double porcentajeDescuento) {
+        super(idCliente);
         this.minutos = minutos;
         this.costoMinuto = costoMinuto;
-        this.megasGigas = megas;
+        this.gigas = gigas;
         this.costoGiga = costoGiga;
         this.porcentajeDescuento = porcentajeDescuento;
     }
 
+    @Override
     public double calcularPagoMensual() {
-        double total = (minutos * costoMinuto) + (megasGigas * costoGiga);
-        return total - (total * porcentajeDescuento);
+        double subtotal = (minutos * costoMinuto) + (gigas * costoGiga);
+        double descuento = subtotal * (porcentajeDescuento / 100.0);
+        return subtotal - descuento;
+    }
+
+    @Override
+    public String getTipoPlan() {
+        return "PostPagoMinutosMegasEconomico";
+    }
+
+    public int getMinutos() {
+        return minutos;
+    }
+
+    public double getCostoMinuto() {
+        return costoMinuto;
+    }
+
+    public double getGigas() {
+        return gigas;
+    }
+
+    public double getCostoGiga() {
+        return costoGiga;
+    }
+
+    public double getPorcentajeDescuento() {
+        return porcentajeDescuento;
     }
 }
+
 

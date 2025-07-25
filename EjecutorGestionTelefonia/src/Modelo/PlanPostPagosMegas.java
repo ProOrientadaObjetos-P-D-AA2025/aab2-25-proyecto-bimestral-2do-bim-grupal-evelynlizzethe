@@ -1,18 +1,36 @@
 package Modelo;
 
 public class PlanPostPagosMegas extends PlanMovil {
-    private double megasGigas;
-    private double costoPorGiga;
+    private double gigas;
+    private double costoGiga;
     private double tarifaBase;
 
-    public PlanPostPagosMegas(int idPlan, String nombre, double megas, double costoGiga, double tarifaBase) {
-        super(idPlan, nombre, "Megas");
-        this.megasGigas = megas;
-        this.costoPorGiga = costoGiga;
+    public PlanPostPagosMegas(int idCliente, double gigas, double costoGiga, double tarifaBase) {
+        super(idCliente);
+        this.gigas = gigas;
+        this.costoGiga = costoGiga;
         this.tarifaBase = tarifaBase;
     }
 
+    @Override
     public double calcularPagoMensual() {
-        return tarifaBase + (megasGigas * costoPorGiga);
+        return tarifaBase + (gigas * costoGiga);
+    }
+
+    @Override
+    public String getTipoPlan() {
+        return "PostPagoMegas";
+    }
+
+    public double getGigas() {
+        return gigas;
+    }
+
+    public double getCostoGiga() {
+        return costoGiga;
+    }
+
+    public double getTarifaBase() {
+        return tarifaBase;
     }
 }

@@ -1,44 +1,26 @@
 package Modelo;
 
 public abstract class PlanMovil {
-    
-    protected int idPlan;
-    protected String nombre;
-    protected String tipoPlan;
+    private static int contador = 1;
 
-    public PlanMovil(int idPlan, String nombre, String tipoPlan) {
-        this.idPlan = idPlan;
-        this.nombre = nombre;
-        this.tipoPlan = tipoPlan;
+    private int idPlan;
+    private int idCliente;
+
+    public PlanMovil(int idCliente) {
+        this.idPlan = contador++;
+        this.idCliente = idCliente;
     }
-    
-    public abstract double calcularPagoMensual();
 
     public int getIdPlan() {
         return idPlan;
     }
 
-    public void setIdPlan(int idPlan) {
-        this.idPlan = idPlan;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public abstract double calcularPagoMensual();
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getTipoPlan() {
-        return tipoPlan;
-    }
-
-    public void setTipoPlan(String tipoPlan) {
-        this.tipoPlan = tipoPlan;
-    }
-    
-
- 
+    public abstract String getTipoPlan();
 }
 
