@@ -1,18 +1,25 @@
 package Modelo;
 
 public abstract class PlanMovil {
-    private static int contador = 1;
 
     private int idPlan;
     private int idCliente;
 
+    public PlanMovil(int idPlan, int idCliente) {
+        this.idPlan = idPlan;
+        this.idCliente = idCliente;
+    }
+
     public PlanMovil(int idCliente) {
-        this.idPlan = contador++;
         this.idCliente = idCliente;
     }
 
     public int getIdPlan() {
         return idPlan;
+    }
+
+    public void setIdPlan(int idPlan) {
+        this.idPlan = idPlan;
     }
 
     public int getIdCliente() {
@@ -23,4 +30,3 @@ public abstract class PlanMovil {
 
     public abstract String getTipoPlan();
 }
-

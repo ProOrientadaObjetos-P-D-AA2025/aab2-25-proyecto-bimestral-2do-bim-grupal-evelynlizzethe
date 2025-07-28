@@ -1,40 +1,74 @@
 package Modelo;
 
 public class Cliente {
-    private static int contador = 1;
 
     private int idCliente;
     private String nombres;
     private String cedulaPasaporte;
     private String ciudad;
-    private String correo;        
-    private String carrera;       
+    private String correo;
+    private String carrera;
     private Dispositivo dispositivo;
 
-    public Cliente(String nombres, String cedulaPasaporte, String ciudad,
-                   String correo, String carrera, Dispositivo dispositivo) {
-        this.idCliente = contador++;
+    // Constructor principal (lectura desde BD)
+    public Cliente(int idCliente,
+            String nombres,
+            String cedulaPasaporte,
+            String ciudad,
+            String correo,
+            String carrera,
+            String marca,
+            String modelo,
+            String numero) {
+        this.idCliente = idCliente;
         this.nombres = nombres;
         this.cedulaPasaporte = cedulaPasaporte;
         this.ciudad = ciudad;
         this.correo = correo;
         this.carrera = carrera;
-        this.dispositivo = dispositivo;
-    }
-
-    public Cliente(String nombres, String cedulaPasaporte, String ciudad,
-                   String marca, String modelo, String numero) {
-        this.idCliente = contador++;
-        this.nombres = nombres;
-        this.cedulaPasaporte = cedulaPasaporte;
-        this.ciudad = ciudad;
-        this.correo = ""; 
-        this.carrera = ""; 
         this.dispositivo = new Dispositivo(marca, modelo, numero);
     }
 
-    public Cliente() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // Para crear antes de persistir (id=0)
+    public Cliente(String nombres,
+            String cedulaPasaporte,
+            String ciudad,
+            String correo,
+            String carrera,
+            String marca,
+            String modelo,
+            String numero) {
+        this(0, nombres, cedulaPasaporte, ciudad, correo, carrera, marca, modelo, numero);
+    }
+
+    // Este constructor acepta directamente un Dispositivo (puede ser null)
+    public Cliente(int idCliente,
+            String nombres,
+            String cedulaPasaporte,
+            String ciudad,
+            String correo,
+            String carrera,
+            Dispositivo dispositivo) {
+        this.idCliente = idCliente;
+        this.nombres = nombres;
+        this.cedulaPasaporte = cedulaPasaporte;
+        this.ciudad = ciudad;
+        this.correo = correo;
+        this.carrera = carrera;
+        this.dispositivo = dispositivo;  // Asignación directa, sin llamar a getters
+    }
+
+    public Cliente(String nombres,
+            String cedulaPasaporte,
+            String ciudad,
+            String correo,
+            String carrera,
+            Dispositivo dispositivo) {
+        this(0, nombres, cedulaPasaporte, ciudad, correo, carrera, dispositivo);
+    }
+
+    public void setIdCliente(int id) {
+        this.idCliente = id;
     }
 
     public int getIdCliente() {
@@ -69,8 +103,8 @@ public class Cliente {
         this.nombres = nombres;
     }
 
-    public void setCedulaPasaporte(String cedulaPasaporte) {
-        this.cedulaPasaporte = cedulaPasaporte;
+    public void setCedulaPasaporte(String cedula) {
+        this.cedulaPasaporte = cedula;
     }
 
     public void setCiudad(String ciudad) {
@@ -89,4 +123,3 @@ public class Cliente {
         this.dispositivo = dispositivo;
     }
 }
-

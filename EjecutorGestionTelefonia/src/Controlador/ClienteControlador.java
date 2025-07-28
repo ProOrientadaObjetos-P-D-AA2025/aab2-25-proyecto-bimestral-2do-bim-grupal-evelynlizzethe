@@ -1,55 +1,29 @@
 package Controlador;
 
+import DAO.ClienteDAO;
 import Modelo.Cliente;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteControlador {
+    private ClienteDAO clienteDAO = new ClienteDAO();
 
-    private List<Cliente> clientes;
-
-    public ClienteControlador() {
-        clientes = new ArrayList<>();
-    }
-
-
-    public boolean crearCliente(Cliente c) {
-        return clientes.add(c);
+    public boolean crearCliente(Cliente cliente) {
+        return clienteDAO.crearCliente(cliente);
     }
 
     public List<Cliente> obtenerClientes() {
-        return clientes;
+        return clienteDAO.obtenerTodosClientes();
     }
 
     public Cliente buscarPorId(int id) {
-        for (Cliente c : clientes) {
-            if (c.getIdCliente() == id) {
-                return c;
-            }
-        }
-        return null;
+        return clienteDAO.obtenerClientePorId(id);
     }
 
-
-    public boolean actualizarCliente(Cliente clienteActualizado) {
-        Cliente c = buscarPorId(clienteActualizado.getIdCliente());
-        if (c != null) {
-            c.setNombres(clienteActualizado.getNombres());
-            c.setCedulaPasaporte(clienteActualizado.getCedulaPasaporte());
-            c.setCiudad(clienteActualizado.getCiudad());
-            c.setCorreo(clienteActualizado.getCorreo());
-            c.setCarrera(clienteActualizado.getCarrera());
-            c.setDispositivo(clienteActualizado.getDispositivo());
-            return true;
-        }
-        return false;
+    public boolean actualizarCliente(Cliente cliente) {
+        return clienteDAO.actualizarCliente(cliente);
     }
 
     public boolean eliminarCliente(int id) {
-        Cliente c = buscarPorId(id);
-        if (c != null) {
-            return clientes.remove(c);
-        }
-        return false;
+        return clienteDAO.eliminarCliente(id);
     }
 }

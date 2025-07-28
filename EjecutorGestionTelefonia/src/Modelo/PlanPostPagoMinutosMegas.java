@@ -1,13 +1,25 @@
 package Modelo;
 
 public class PlanPostPagoMinutosMegas extends PlanMovil {
+
     private int minutos;
     private double costoMinuto;
     private double gigas;
     private double costoGiga;
 
-    public PlanPostPagoMinutosMegas(int idCliente, int minutos, double costoMinuto,
-                                   double gigas, double costoGiga) {
+    public PlanPostPagoMinutosMegas(int idPlan, int idCliente,
+            int minutos, double costoMinuto,
+            double gigas, double costoGiga) {
+        super(idPlan, idCliente);
+        this.minutos = minutos;
+        this.costoMinuto = costoMinuto;
+        this.gigas = gigas;
+        this.costoGiga = costoGiga;
+    }
+
+    public PlanPostPagoMinutosMegas(int idCliente,
+            int minutos, double costoMinuto,
+            double gigas, double costoGiga) {
         super(idCliente);
         this.minutos = minutos;
         this.costoMinuto = costoMinuto;
@@ -17,7 +29,7 @@ public class PlanPostPagoMinutosMegas extends PlanMovil {
 
     @Override
     public double calcularPagoMensual() {
-        return (minutos * costoMinuto) + (gigas * costoGiga);
+        return minutos * costoMinuto + gigas * costoGiga;
     }
 
     @Override
