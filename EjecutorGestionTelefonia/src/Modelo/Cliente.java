@@ -10,7 +10,6 @@ public class Cliente {
     private String carrera;
     private Dispositivo dispositivo;
 
-    // Constructor principal (lectura desde BD)
     public Cliente(int idCliente,
             String nombres,
             String cedulaPasaporte,
@@ -29,7 +28,6 @@ public class Cliente {
         this.dispositivo = new Dispositivo(marca, modelo, numero);
     }
 
-    // Para crear antes de persistir (id=0)
     public Cliente(String nombres,
             String cedulaPasaporte,
             String ciudad,
@@ -41,7 +39,6 @@ public class Cliente {
         this(0, nombres, cedulaPasaporte, ciudad, correo, carrera, marca, modelo, numero);
     }
 
-    // Este constructor acepta directamente un Dispositivo (puede ser null)
     public Cliente(int idCliente,
             String nombres,
             String cedulaPasaporte,
@@ -55,7 +52,7 @@ public class Cliente {
         this.ciudad = ciudad;
         this.correo = correo;
         this.carrera = carrera;
-        this.dispositivo = dispositivo;  // Asignación directa, sin llamar a getters
+        this.dispositivo = dispositivo; 
     }
 
     public Cliente(String nombres,

@@ -16,10 +16,10 @@ public class ClienteDAO {
         (nombres, cedula_pasaporte, ciudad, correo, carrera, marca, modelo, numero)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)""";
 
-        try (Connection conn = ConexionSQLite.conectar(); // ① Pedimos que nos devuelva el ID autogenerado:
+        try (Connection conn = ConexionSQLite.conectar(); 
                  PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            // ② Aquí _sí_ vinculamos **todos** los parámetros:
+            
             pstmt.setString(1, cliente.getNombres());
             pstmt.setString(2, cliente.getCedulaPasaporte());
             pstmt.setString(3, cliente.getCiudad());
@@ -37,13 +37,11 @@ public class ClienteDAO {
                 pstmt.setNull(8, Types.VARCHAR);
             }
 
-            // ③ Ejecutamos la inserción:
             int filas = pstmt.executeUpdate();
             if (filas == 0) {
-                return false;  // no se insertó nada
+                return false;  
             }
 
-            // ④ Recuperamos el ID recién generado:
             try (ResultSet rs = pstmt.getGeneratedKeys()) {
                 if (rs.next()) {
                     cliente.setIdCliente(rs.getInt(1));

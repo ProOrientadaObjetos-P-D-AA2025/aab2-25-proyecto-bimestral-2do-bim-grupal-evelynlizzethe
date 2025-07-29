@@ -20,7 +20,7 @@ public class FacturaDAO {
             pstmt.setInt(1, factura.getIdCliente());
             pstmt.setInt(2, factura.getIdPlan());
             pstmt.setDouble(3, factura.getTotalPagar());
-            pstmt.setString(4, factura.getFechaEmision());  // ya es String
+            pstmt.setString(4, factura.getFechaEmision());  
 
             int filas = pstmt.executeUpdate();
             if (filas == 0) {
@@ -46,7 +46,7 @@ public class FacturaDAO {
         try (Connection conn = ConexionSQLite.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                String fechaText = rs.getString("fecha_emision");  // texto
+                String fechaText = rs.getString("fecha_emision");  
                 Factura f = new Factura(
                         rs.getInt("id_cliente"),
                         rs.getInt("id_plan"),
